@@ -6,17 +6,24 @@
 #values do not exceed four million, find the sum of the
 #even-valued terms.
 
-.limit <- 4e6
-f.fibb <- function(x0=1, x1=2, limit=10) {
-    if (x1>limit ) return(x0)
-    ## grow vector x0 as we go
-    new.x0 <- c(x0, x1)
-    new.x1 <- tail(x0,1)+x1
-    ## need to hand limit along
-    f.fibb(new.x0, new.x1, limit)
+is.even <- function(x) !(x%%2)
+.limit <- 4*10^(10^2)
+#.limit <- 4e6
+f.accum.fib <- function(x0=1, x1=1, accum=0, 
+    ## set limit and test.fun at define-time
+    limit=.limit, test.fun=is.even
+) {
+    ## hand accum along, 
+    ## summing new fibs that are true for test.fun as we go
+    new.x1 <- x0+x1
+    ## done
+    if (new.x1>limit ) return(accum)
+    ## it's even (or whatever), accumulate the new fib
+    if (test.fun(new.x1)) {
+        f.accum.fib(x1, new.x1, accum=accum+new.x1)
+    } else { 
+        f.accum.fib(x1, new.x1, accum=accum)
+    }
 }
-.ans <- f.fibb(limit=.limit)
-## index of even elements
-.is.even <- !(.ans %% 2)
-.ans = sum(.ans[.is.even])
+.ans <- f.accum.fib()
 
