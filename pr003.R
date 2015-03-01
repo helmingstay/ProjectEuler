@@ -23,16 +23,15 @@ not.prime <- function(x, start.primes = c(2,3,5,7)) {
        
 #.num <- 13195
 .num <- 600851475143 
-.test <- round(sqrt(.num))
+.test <- round(sqrt(.num))+1
 while (1) {
+    .test <- .test-1
     if (!is.divides(.num, .test)){
-        .test = .test-1
+        next
     } else if (!not.prime(.test)) {
         .ans = .test
         break
-    } else { 
-        .test = .test-1
-    }
+    } 
 }
     
 if (0) {
