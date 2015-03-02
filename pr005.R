@@ -5,6 +5,6 @@
 ## evenly divisible by all of the numbers from 1 to 20?
 
 
-(2^2 * 3 * 5 * 7 * 11 * 13 * 17 * 19) / (1:20)
+ans <- (2^4 * 3^2 * 5 * 7 * 11 * 13 * 17 * 19) %% (1:20)
 
 
