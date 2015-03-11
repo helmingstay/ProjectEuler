@@ -1,3 +1,5 @@
+f.sum.to <- function(n) n*(n+1)/2
+
 f.primes.to <- function(to, num=Inf, .nalloc=100) {
     ## return a vec of all primes lte to
     ## start with 2 primes
